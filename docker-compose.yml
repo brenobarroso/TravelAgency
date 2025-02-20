@@ -1,0 +1,26 @@
+  version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api/TravelAgencyApi
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=admin;Password=admin;Host=db;Port=5432;Database=travel_agency_db;
+
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

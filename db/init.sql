@@ -1,0 +1,1 @@
+CREATE database travel_agency_db;
